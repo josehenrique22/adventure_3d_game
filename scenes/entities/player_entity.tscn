@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuilyn2tad61t"]
+[gd_scene load_steps=6 format=3 uid="uid://cuilyn2tad61t"]
 
 [ext_resource type="Script" uid="uid://bwxc2b6kr52dj" path="res://scripts/entities/player/CharacterController.cs" id="1_jrk8v"]
 [ext_resource type="Script" uid="uid://drwrqe18ghvjb" path="res://scripts/entities/player/MovementComponent.cs" id="2_47lna"]
+[ext_resource type="Script" uid="uid://doqueymmegstj" path="res://scripts/entities/player/DebugMovementComponent.cs" id="3_x0tgy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e17tw"]
 
@@ -35,3 +36,6 @@ script = ExtResource("2_47lna")
 _speed = 18.0
 _acceleration = 16.0
 _deceleration = 14.3
+
+[node name="DebugMovementComponent" type="Node" parent="PlayerComponents"]
+script = ExtResource("3_x0tgy")

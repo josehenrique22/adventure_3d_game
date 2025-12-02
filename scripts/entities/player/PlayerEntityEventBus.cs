@@ -1,13 +1,8 @@
 
-using System;
-
+/// <summary>
+/// Singleton to handler player entity events
+/// </summary>
 public static class PlayerEntityEventBus
 {
-    public static event EventHandler PlayerMovementEventHandler;
-    
-    public static void PlayerMovementListener()
-    {
-        PlayerMovementEventHandler?.Invoke(null, EventArgs.Empty);
-    }
 
 }
