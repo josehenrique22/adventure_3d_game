@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuilyn2tad61t"]
+[gd_scene load_steps=5 format=3 uid="uid://cuilyn2tad61t"]
 
 [ext_resource type="Script" uid="uid://bwxc2b6kr52dj" path="res://scripts/entities/player/CharacterController.cs" id="1_jrk8v"]
+[ext_resource type="Script" uid="uid://drwrqe18ghvjb" path="res://scripts/entities/player/MovementComponent.cs" id="2_47lna"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e17tw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jrk8v"]
 
-[node name="PlayerEntity" type="CharacterBody3D"]
+[node name="PlayerEntity" type="CharacterBody3D" node_paths=PackedStringArray("_playerEntityMovementComponent")]
 script = ExtResource("1_jrk8v")
+_playerEntityMovementComponent = NodePath("PlayerComponents/MovementComponents")
 
 [node name="PlaceHolderMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_e17tw")
@@ -22,3 +24,14 @@ debug_color = Color(0.984162, 0, 0.346207, 0.42)
 [node name="HurtBox" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_jrk8v")
 debug_color = Color(0.984162, 0, 0.346207, 0.42)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49218, 0.870493, 0, -0.870493, 0.49218, 0, 11.2364, 4.86357)
+
+[node name="PlayerComponents" type="Node" parent="."]
+
+[node name="MovementComponents" type="Node" parent="PlayerComponents"]
+script = ExtResource("2_47lna")
+_speed = 18.0
+_acceleration = 16.0
+_deceleration = 14.3
