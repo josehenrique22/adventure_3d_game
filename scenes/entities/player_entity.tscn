@@ -1,16 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://cuilyn2tad61t"]
 
 [ext_resource type="Script" uid="uid://bwxc2b6kr52dj" path="res://scripts/entities/player/CharacterController.cs" id="1_jrk8v"]
-[ext_resource type="Script" uid="uid://drwrqe18ghvjb" path="res://scripts/entities/player/MovementComponent.cs" id="2_47lna"]
-[ext_resource type="Script" uid="uid://doqueymmegstj" path="res://scripts/entities/player/DebugMovementComponent.cs" id="3_x0tgy"]
+[ext_resource type="Script" uid="uid://drwrqe18ghvjb" path="res://scripts/entities/player/component/MovementComponent.cs" id="2_47lna"]
+[ext_resource type="Script" uid="uid://beo8fn3db4r2w" path="res://scripts/entities/player/component/DashComponent.cs" id="3_x0tgy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e17tw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jrk8v"]
 
-[node name="PlayerEntity" type="CharacterBody3D" node_paths=PackedStringArray("_playerEntityMovementComponent")]
+[node name="PlayerEntity" type="CharacterBody3D" node_paths=PackedStringArray("_playerEntityMovementComponent", "_dashComponent")]
 script = ExtResource("1_jrk8v")
-_playerEntityMovementComponent = NodePath("PlayerComponents/MovementComponents")
+_playerEntityMovementComponent = NodePath("PlayerComponents/MovementComponent")
+_dashComponent = NodePath("PlayerComponents/DashComponent")
 
 [node name="PlaceHolderMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_e17tw")
@@ -31,11 +32,16 @@ transform = Transform3D(1, 0, 0, 0, 0.49218, 0.870493, 0, -0.870493, 0.49218, 0,
 
 [node name="PlayerComponents" type="Node" parent="."]
 
-[node name="MovementComponents" type="Node" parent="PlayerComponents"]
+[node name="MovementComponent" type="Node" parent="PlayerComponents"]
 script = ExtResource("2_47lna")
 _speed = 18.0
 _acceleration = 16.0
 _deceleration = 14.3
 
-[node name="DebugMovementComponent" type="Node" parent="PlayerComponents"]
+[node name="DashComponent" type="Node" parent="PlayerComponents" node_paths=PackedStringArray("_dashCooldownTimer")]
 script = ExtResource("3_x0tgy")
+_dashCooldownTimer = NodePath("Timer")
+_dashVelocity = 25.0
+
+[node name="Timer" type="Timer" parent="PlayerComponents/DashComponent"]
+wait_time = 0.8
