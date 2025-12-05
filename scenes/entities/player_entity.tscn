@@ -38,10 +38,10 @@ _speed = 18.0
 _acceleration = 16.0
 _deceleration = 14.3
 
-[node name="DashComponent" type="Node" parent="PlayerComponents" node_paths=PackedStringArray("_dashCooldownTimer")]
+[node name="DashComponent" type="Node" parent="PlayerComponents" node_paths=PackedStringArray("_dashCooldown")]
 script = ExtResource("3_x0tgy")
-_dashCooldownTimer = NodePath("Timer")
-_dashVelocity = 25.0
+_dashCooldown = NodePath("CooldownTimer")
+_dashForce = 30.0
 
-[node name="Timer" type="Timer" parent="PlayerComponents/DashComponent"]
+[node name="CooldownTimer" type="Timer" parent="PlayerComponents/DashComponent"]
 wait_time = 0.8

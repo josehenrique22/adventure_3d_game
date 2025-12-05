@@ -9,6 +9,6 @@ public partial class CharacterController : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         _playerEntityMovementComponent.PlayerEntityMovement(this, delta);
-        _dashComponent.PlayerEntityDash(this);
+        _dashComponent.PlayerDash(this);
     }
 }
